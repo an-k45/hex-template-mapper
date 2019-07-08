@@ -1,7 +1,18 @@
 import React from 'react';
 
-function App() {
-  return <h1>Hello World with JSX, Babel, and Webpack</h1>;
+import Header from './components/Header';
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <Header />
+    );
+  }
 }
 
 export default App;

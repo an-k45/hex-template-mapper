@@ -1,0 +1,8 @@
+/* Custom styling in React Semantic UI */
+/* https://codesandbox.io/s/mq3oy13v7y */
+
+.ui.fluid.container {
+  /* Removes margins on responsive design! */
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
