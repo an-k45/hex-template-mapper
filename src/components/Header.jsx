@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Grid, Button } from 'semantic-ui-react';
 
-import HeaderGrid from "./HeaderGrid";
+import HeaderInputs from "./HeaderInputs";
 
 class Header extends React.Component {
   constructor() {
@@ -13,7 +13,7 @@ class Header extends React.Component {
     return (
       <Container fluid style={headerStyles}>
         <Container>
-          <HeaderGrid />
+          <HeaderInputs />
         </Container>
       </Container>
     );
