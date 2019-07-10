@@ -1,16 +1,20 @@
 import React from 'react';
-import { HexGrid, Layout, Hexagon, GridGenerator, Text } from 'react-hexgrid';
+import { Hex, HexGrid, Layout, Hexagon, GridGenerator, Text } from 'react-hexgrid';
 
 class Body extends React.Component {
   constructor() {
     super();
     this.state = {
-      regularHexes: [],
-      addableHexes: []
+      regularHexes: {"0": [0]},
+      addableHexes: {
+        "0": [-1, 1],
+        "1": [-1, 0],
+        "-1": [1, 0]
+      }
     };
   }
 
-  handleRegularClick() {
+  handleRegularClick() { // TODO bind when we use state change
     console.log("You clicked a regular hex!");
   }
 
@@ -18,18 +22,31 @@ class Body extends React.Component {
     console.log("You clicked an addable hex!");
   }
 
+  getHexArray(hexCoords) {
+    let hexes = [];
+    for (let q in hexCoords) {
+      hexes.push(...hexCoords[+q].map(r => new Hex(+q, +r, -(+q)-(+r))))
+    }
+    return hexes
+  }
+
   render() {
+    const regularHexArray = this.getHexArray(this.state.regularHexes);
+    const addableHexArray = this.getHexArray(this.state.addableHexes);
     return (
       <div style={{textAlign: 'center'}}>
         <HexGrid>
           <Layout>
-            <Hexagon q={0} r={0} s={0} onClick={this.handleRegularClick} />
-            <Hexagon q={0} r={-1} s={1} onClick={this.handleAddableClick} />
-            <Hexagon q={1} r={-1} s={0} onClick={this.handleAddableClick} />
-            <Hexagon q={1} r={0} s={-1} onClick={this.handleAddableClick} />
-            <Hexagon q={0} r={1} s={-1} onClick={this.handleAddableClick} />
-            <Hexagon q={-1} r={1} s={0} onClick={this.handleAddableClick} />
-            <Hexagon q={-1} r={0} s={1} onClick={this.handleAddableClick} />
+            { regularHexArray.map((hex, i) => <Hexagon
+                                                key={i}
+                                                q={hex.q} r={hex.r} s={hex.s}
+                                                onClick={this.handleRegularClick}
+                                              />) }
+            { addableHexArray.map((hex, i) => <Hexagon
+                                                key={i}
+                                                q={hex.q} r={hex.r} s={hex.s}
+                                                onClick={this.handleAddableClick}
+                                              />) }
           </Layout>
         </HexGrid>
       </div>
