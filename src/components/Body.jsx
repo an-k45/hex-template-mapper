@@ -34,7 +34,7 @@ class Body extends React.Component {
             new Hex(q, r-1, s+1)]
   }
 
-  removeHex(hex, hexCoords) {
+  deleteHex(hex, hexCoords) {
     const {q, r} = this.getNumberCoords(hex);
     hexCoords[q] = hexCoords[q].filter(rCoord => +rCoord != r);
     if (hexCoords[q].length == 0) {
@@ -42,34 +42,34 @@ class Body extends React.Component {
     }
   }
 
-  addHexes(hexArray, hexCoordsTarget, hexCoordsCheck) {
-    for (let hex of hexArray) {
-      let {q, r, s} = this.getNumberCoords(hex);
-      if (!(q in hexCoordsTarget)) hexCoordsTarget[q] = [];
-      // TODO Refactor
-      if (!hexCoordsTarget[q].includes(r)) {
-        try {
-          if (!hexCoordsCheck[q].includes(r)) {
-            hexCoordsTarget[q].push(r)
-          }
-        } catch (err) {
-          hexCoordsTarget[q].push(r)
-        }
-      }
-    }
+  addHex(hex, hexCoords) {
+    const {q, r} = this.getNumberCoords(hex);
+    if (!(q in hexCoords)) hexCoords[q] = [];
+    if (!hexCoords[q].includes(r)) hexCoords[q].push(r);
+  }
+
+  swapHexToTarget(hex, inputCoords, targetCoords) {
+    this.deleteHex(hex, inputCoords);
+    this.addHex(hex, targetCoords);
   }
 
   handleRegularClick(hex) {
     console.log("Regular hex with " + `q: ${hex.q}, r: ${hex.r}, s: ${hex.s}`);
+    const adjacentHexes = this.getAdjacentHexes(hex);
+    this.setState(prevState => {
+
+      return {
+        regularHexCoords: prevState.regularHexCoords,
+        addableHexCoords: prevState.addableHexCoords
+      }
+    })
   }
 
   handleAddableClick(hex) {
     console.log("Addable hex with " + `q: ${hex.q}, r: ${hex.r}, s: ${hex.s}`);
     const adjacentHexes = this.getAdjacentHexes(hex);
     this.setState(prevState => {
-      this.removeHex(hex, prevState.addableHexCoords);
-      this.addHexes([hex], prevState.regularHexCoords, prevState.addableHexCoords);
-      this.addHexes(adjacentHexes, prevState.addableHexCoords, prevState.regularHexCoords);
+      this.swapHexToTarget(hex, prevState.addableHexCoords, prevState.regularHexCoords);
       return {
         regularHexCoords: prevState.regularHexCoords,
         addableHexCoords: prevState.addableHexCoords
