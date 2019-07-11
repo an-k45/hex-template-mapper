@@ -67,12 +67,19 @@ class Body extends React.Component {
     return false;
   }
 
+  isObjectEmpty(obj) {
+    return Object.keys(obj).length === 0;
+  }
+
   handleRegularClick(hex) {
     console.log("Regular hex with " + `q: ${hex.q}, r: ${hex.r}, s: ${hex.s}`);
     const adjacentHexes = this.getAdjacentHexes(hex);
     this.setState(prevState => {
       this.deleteHex(hex, prevState.regularHexCoords);
-      if (this.isRegularHexAdjacent(adjacentHexes, prevState.regularHexCoords)) this.addHex(hex, prevState.addableHexCoords);
+      if (this.isRegularHexAdjacent(adjacentHexes, prevState.regularHexCoords) ||
+          this.isObjectEmpty(prevState.regularHexCoords)) {
+        this.addHex(hex, prevState.addableHexCoords);
+      }
       for (let hexa of adjacentHexes) {
         if (this.isTargetHex(hexa, prevState.addableHexCoords) &&
             !this.isRegularHexAdjacent(this.getAdjacentHexes(hexa), prevState.regularHexCoords)) {
