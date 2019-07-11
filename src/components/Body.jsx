@@ -53,21 +53,37 @@ class Body extends React.Component {
     this.addHex(hex, targetCoords);
   }
 
+  isTargetHex(hex, targetCoords) {
+    const {q, r} = this.getNumberCoords(hex);
+    return q in targetCoords && targetCoords[q].includes(r)
+  }
+
+  isRegularHexAdjacent(hexArray, regularHexCoords) {
+    for (let hexa of hexArray) {
+      if (this.isTargetHex(hexa, regularHexCoords)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   handleRegularClick(hex) {
     console.log("Regular hex with " + `q: ${hex.q}, r: ${hex.r}, s: ${hex.s}`);
     const adjacentHexes = this.getAdjacentHexes(hex);
     this.setState(prevState => {
-
+      this.deleteHex(hex, prevState.regularHexCoords);
+      if (this.isRegularHexAdjacent(adjacentHexes, prevState.regularHexCoords)) this.addHex(hex, prevState.addableHexCoords);
+      for (let hexa of adjacentHexes) {
+        if (this.isTargetHex(hexa, prevState.addableHexCoords) &&
+            !this.isRegularHexAdjacent(this.getAdjacentHexes(hexa), prevState.regularHexCoords)) {
+          this.deleteHex(hexa, prevState.addableHexCoords);
+        }
+      }
       return {
         regularHexCoords: prevState.regularHexCoords,
         addableHexCoords: prevState.addableHexCoords
       }
     })
-  }
-
-  isTargetHex(hex, targetCoords) {
-    const {q, r} = this.getNumberCoords(hex);
-    return q in targetCoords && targetCoords[q].includes(r)
   }
 
   handleAddableClick(hex) {
