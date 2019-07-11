@@ -65,11 +65,21 @@ class Body extends React.Component {
     })
   }
 
+  isTargetHex(hex, targetCoords) {
+    const {q, r} = this.getNumberCoords(hex);
+    return q in targetCoords && targetCoords[q].includes(r)
+  }
+
   handleAddableClick(hex) {
     console.log("Addable hex with " + `q: ${hex.q}, r: ${hex.r}, s: ${hex.s}`);
     const adjacentHexes = this.getAdjacentHexes(hex);
     this.setState(prevState => {
       this.swapHexToTarget(hex, prevState.addableHexCoords, prevState.regularHexCoords);
+      for (let hexa of adjacentHexes) {
+        if (!this.isTargetHex(hexa, prevState.addableHexCoords) && !this.isTargetHex(hexa, prevState.regularHexCoords)) {
+          this.addHex(hexa, prevState.addableHexCoords);
+        }
+      }
       return {
         regularHexCoords: prevState.regularHexCoords,
         addableHexCoords: prevState.addableHexCoords
