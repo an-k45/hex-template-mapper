@@ -27,33 +27,51 @@ body {
 svg {
 
 }
-svg g {
+
+/* Regular hexes */
+svg g.regular {
   fill: #3F51B5;
   fill-opacity: 0.6;
 }
-svg g:hover {
+svg g.regular:hover {
   fill-opacity: 1;
 }
-svg g:hover text {
+svg g.regular:hover text {
   fill-opacity: 1;
 }
 
-svg g polygon {
+svg g.regular polygon {
   stroke: #3F51B5;
   stroke-width: 0.2;
   transition: fill-opacity .2s;
 }
-svg g text {
+svg g.regular text {
   font-size: 0.3em;
   fill: #FFFFFF;
   fill-opacity: 0.4;
   transition: fill-opacity .2s;
 }
-svg path {
-  fill: none;
-  stroke: hsl(60, 20%, 70%);
-  stroke-width: 0.4em;
-  stroke-opacity: 0.3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+
+/* Addable hexes */
+svg g.addable {
+  fill: #3F51B5;
+  fill-opacity: 0;
+}
+svg g.addable:hover {
+  fill-opacity: 0.2;
+}
+svg g.addable:hover text {
+  fill-opacity: 1;
+}
+
+svg g.addable polygon {
+  stroke: #6776ca;
+  stroke-width: 0.2;
+  transition: fill-opacity .2s;
+}
+svg g.addable text {
+  font-size: 0.3em;
+  fill: #FFFFFF;
+  fill-opacity: 0.4;
+  transition: fill-opacity .2s;
 }

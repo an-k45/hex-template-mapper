@@ -127,11 +127,13 @@ class Body extends React.Component {
           <Layout>
             { regularHexArray.map((hex, i) => <Hexagon
                                                 key={i}
+                                                className={"regular"}
                                                 q={hex.q} r={hex.r} s={hex.s}
                                                 onClick={() => this.handleRegularClick(hex)}
                                               />) }
             { addableHexArray.map((hex, i) => <Hexagon
                                                 key={i}
+                                                className={"addable"}
                                                 q={hex.q} r={hex.r} s={hex.s}
                                                 onClick={() => this.handleAddableClick(hex)}
                                               />) }
