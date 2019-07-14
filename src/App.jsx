@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from 'semantic-ui-react';
 
 import Body from './components/Body';
+import ConfigPanel from './components/ConfigPanel'
 
 class App extends React.Component {
   constructor() {
@@ -13,8 +14,8 @@ class App extends React.Component {
     // Adapted from https://stackoverflow.com/questions/48717904/how-to-make-a-semantic-ui-react-grid-full-screen-with-different-row-heights
     return (
       <Grid celled style={gridStyles}>
-        <Grid.Column style={optionColumnStyles} width={4}>
-          panel
+        <Grid.Column style={configColumnStyles} width={4}>
+          <ConfigPanel />
         </Grid.Column>
         <Grid.Column style={bodyColumnStyles} width={12}>
           <Body />
@@ -32,9 +33,8 @@ const gridStyles = {
   margin: 0
 };
 
-const optionColumnStyles = {
+const configColumnStyles = {
   backgroundColor: "honeydew", // colors: https://www.w3schools.com/colors/colors_names.asp
-  padding: 0
 };
 
 const bodyColumnStyles = {
