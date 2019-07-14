@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
 
-import Header from './components/Header';
 import Body from './components/Body';
 
 class App extends React.Component {
@@ -15,7 +14,7 @@ class App extends React.Component {
     return (
       <Grid celled style={gridStyles}>
         <Grid.Column style={optionColumnStyles} width={4}>
-          <Header />
+          panel
         </Grid.Column>
         <Grid.Column style={bodyColumnStyles} width={12}>
           <Body />
