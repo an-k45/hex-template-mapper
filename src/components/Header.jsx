@@ -12,9 +12,7 @@ class Header extends React.Component {
   render() {
     return (
       <Container fluid style={headerStyles}>
-        <Container>
-          <HeaderInputs />
-        </Container>
+        <HeaderInputs />
       </Container>
     );
   }
@@ -23,7 +21,7 @@ class Header extends React.Component {
 export default Header;
 
 const headerStyles = {
-  backgroundColor: "whitesmoke", // colors: https://www.w3schools.com/colors/colors_names.asp
+  backgroundColor: "honeydew", // colors: https://www.w3schools.com/colors/colors_names.asp
   marginLeft: 0,
   marginRight: 0
 };
