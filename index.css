@@ -45,7 +45,7 @@ svg g.regular polygon {
   transition: fill-opacity .2s;
 }
 svg g.regular text {
-  font-size: 0.3em;
+  font-size: 0.17em;
   fill: #FFFFFF;
   fill-opacity: 0.4;
   transition: fill-opacity .2s;
@@ -66,11 +66,5 @@ svg g.addable:hover text {
 svg g.addable polygon {
   stroke: #6776ca;
   stroke-width: 0.2;
-  transition: fill-opacity .2s;
-}
-svg g.addable text {
-  font-size: 0.3em;
-  fill: #FFFFFF;
-  fill-opacity: 0.4;
   transition: fill-opacity .2s;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Hex, HexGrid, Layout, Hexagon, GridGenerator, Text } from 'react-hexgrid';
+import { Hex, HexGrid, Layout, Hexagon, GridGenerator, Text, HexUtils } from 'react-hexgrid';
 
 class Body extends React.Component {
   constructor() {
@@ -121,17 +121,23 @@ class Body extends React.Component {
   render() {
     const regularHexArray = this.getHexArray(this.state.regularHexCoords);
     const addableHexArray = this.getHexArray(this.state.addableHexCoords);
-    let { hexSize } = this.props.data;
+    const { hexSize, showCoords } = this.props.data;
     return (
       <div style={{textAlign: 'center'}}>
         <HexGrid width={'100%'} height={'100%'}>
           <Layout size={{ x: hexSize, y: hexSize }}>
-            { regularHexArray.map((hex, i) => <Hexagon
-                                                key={i}
-                                                className={"regular"}
-                                                q={hex.q} r={hex.r} s={hex.s}
-                                                onClick={() => this.handleRegularClick(hex)}
-                                              />) }
+            { regularHexArray.map((hex, i) => {
+              return (
+                <Hexagon
+                  key={i}
+                  className={"regular"}
+                  q={hex.q} r={hex.r} s={hex.s}
+                  onClick={() => this.handleRegularClick(hex)}
+                >
+                  {showCoords ? <Text>{HexUtils.getID(hex)}</Text> : null}
+                </Hexagon>
+              );
+            }) }
             { addableHexArray.map((hex, i) => <Hexagon
                                                 key={i}
                                                 className={"addable"}

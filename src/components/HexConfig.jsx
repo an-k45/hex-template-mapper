@@ -22,7 +22,12 @@ function HexConfig(props) {
       </Form.Field>
       <Form.Field>
         <label>Display Coordinates</label>
-        <Checkbox toggle />
+        <Input
+          name='showCoords'
+          type='checkbox'
+          checked={props.data.showCoords}
+          onChange={props.handleChange}
+        />
       </Form.Field>
     </Form>
   );

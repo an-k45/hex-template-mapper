@@ -8,17 +8,16 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      hexSize: 5
+      hexSize: 5,
+      showCoords: false
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    const {name, value} = event.target;
+    const {name, value, type, checked} = event.target;
     console.log("name: " + name + ", value" + value);
-    this.setState({
-      [name]: value
-    })
+    type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
   }
 
   render() {
