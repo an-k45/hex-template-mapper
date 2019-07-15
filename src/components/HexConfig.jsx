@@ -1,7 +1,8 @@
 import React from 'react';
 import { Input, Form, Checkbox } from 'semantic-ui-react';
 
-function HexConfig() {
+function HexConfig(props) {
+  // TODO: Let action do handleChange
   return (
     <Form>
       <h2>Hexes</h2>
@@ -10,8 +11,10 @@ function HexConfig() {
         <Input
           fluid
           action={{ icon: 'redo' }}
+          name='hexSize'
           type='number'
-          defaultValue={10}
+          value={props.data.hexSize}
+          onChange={props.handleChange}
           step={0.1}
           min={0}
           max={20}

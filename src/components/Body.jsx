@@ -121,10 +121,11 @@ class Body extends React.Component {
   render() {
     const regularHexArray = this.getHexArray(this.state.regularHexCoords);
     const addableHexArray = this.getHexArray(this.state.addableHexCoords);
+    let { hexSize } = this.props.data;
     return (
       <div style={{textAlign: 'center'}}>
         <HexGrid width={'100%'} height={'100%'}>
-          <Layout size={{ x: 5, y: 5 }}>
+          <Layout size={{ x: hexSize, y: hexSize }}>
             { regularHexArray.map((hex, i) => <Hexagon
                                                 key={i}
                                                 className={"regular"}

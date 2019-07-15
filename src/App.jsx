@@ -7,7 +7,18 @@ import ConfigPanel from './components/ConfigPanel'
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      hexSize: 5
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    const {name, value} = event.target;
+    console.log("name: " + name + ", value" + value);
+    this.setState({
+      [name]: value
+    })
   }
 
   render() {
@@ -15,10 +26,10 @@ class App extends React.Component {
     return (
       <Grid celled style={gridStyles}>
         <Grid.Column style={configColumnStyles} width={4}>
-          <ConfigPanel />
+          <ConfigPanel data={this.state} handleChange={this.handleChange} />
         </Grid.Column>
         <Grid.Column style={bodyColumnStyles} width={12}>
-          <Body />
+          <Body data={this.state} />
         </Grid.Column>
       </Grid>
     );

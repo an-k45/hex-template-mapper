@@ -5,11 +5,11 @@ import HexConfig from './HexConfig';
 import ImageConfig from './ImageConfig';
 import ExportConfig from './ExportConfig';
 
-function ConfigPanel() {
+function ConfigPanel(props) {
   // Helpful: https://www.robinwieruch.de/react-semantic-ui-tutorial/
   return (
     <Container textAlign='center'>
-      <HexConfig />
+      <HexConfig data={props.data} handleChange={props.handleChange} />
       <Divider />
       <ImageConfig />
       <Divider />
