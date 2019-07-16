@@ -9,19 +9,21 @@ class App extends React.Component {
     super();
     this.state = {
       hexSize: 5,
-      showCoords: false
+      showCoords: false,
+      backgroundURL: 'https://www.w3schools.com/w3css/img_lights.jpg'
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     const {name, value, type, checked} = event.target;
-    console.log("name: " + name + ", value" + value);
+    // console.log("name: " + name + ", value" + value);
     type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
   }
 
   render() {
     // Adapted from https://stackoverflow.com/questions/48717904/how-to-make-a-semantic-ui-react-grid-full-screen-with-different-row-heights
+    bodyColumnStyles["backgroundImage"] = `url(${this.state.backgroundURL})`
     return (
       <Grid celled style={gridStyles}>
         <Grid.Column style={configColumnStyles} width={4}>
@@ -48,5 +50,9 @@ const configColumnStyles = {
 };
 
 const bodyColumnStyles = {
+  backgroundImage: "url('')",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
   padding: 0
 }
