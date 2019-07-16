@@ -16,11 +16,11 @@ function ImageConfig(props) {
       </Form.Field>
       <Form.Field>
         <label>Position (x)</label>
-        <Input fluid type="range" />
+        <Input fluid type="range" name="backgroundX" onChange={(event) => props.handleChange(event)} />
       </Form.Field>
       <Form.Field>
         <label>Position (y)</label>
-        <Input fluid type="range" />
+        <Input fluid type="range" name="backgroundY" onChange={(event) => props.handleChange(event)} />
       </Form.Field>
       <Form.Field>
         <label>Rotate (angle)</label>

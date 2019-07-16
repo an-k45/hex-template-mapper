@@ -10,21 +10,27 @@ class App extends React.Component {
     this.state = {
       hexSize: 5,
       showCoords: false,
-      backgroundURL: ''
+      backgroundURL: '',
+      backgroundX: '50%',
+      backgroundY: '50%'
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     event.preventDefault();
-    const {name, value, type, checked, files} = event.target;
-    // console.log("name: " + name + ", value" + value);
+    let {name, value, type, checked, files} = event.target;
+    // console.log("name: " + name + ", value: " + value);
+    if (name === "backgroundX" || name === "backgroundY") {
+      value = `${value}%`
+    }
+    
     if (type === "checkbox") {
-      this.setState({ [name]: checked })
+      this.setState({ [name]: checked });
     } else if (type === "file") {
       this.setState({ [name]: URL.createObjectURL(files[0]) });
     } else {
-      this.setState({ [name]: value })
+      this.setState({ [name]: value });
     }
   }
 
@@ -32,11 +38,11 @@ class App extends React.Component {
     // Background image help from https://stackoverflow.com/questions/31353703/how-to-upload-image-file-from-computer-and-set-as-div-background-image-using-jqu
     const bodyColumnStyles = {
       backgroundImage: `url(${this.state.backgroundURL})`,
-      backgroundPosition: "center",
+      backgroundPosition: `${this.state.backgroundX} ${this.state.backgroundY}`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
       padding: 0
-    }
+    };
     // Adapted from https://stackoverflow.com/questions/48717904/how-to-make-a-semantic-ui-react-grid-full-screen-with-different-row-heights
     return (
       <Grid celled style={gridStyles}>
