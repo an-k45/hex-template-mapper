@@ -2,8 +2,8 @@ import React from 'react';
 import { Hex, HexGrid, Layout, Hexagon, GridGenerator, Text, HexUtils } from 'react-hexgrid';
 
 class Body extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       regularHexCoords: {"0": [0]},
       addableHexCoords: {
@@ -72,7 +72,7 @@ class Body extends React.Component {
   }
 
   handleRegularClick(hex) {
-    console.log("Regular hex with " + `q: ${hex.q}, r: ${hex.r}, s: ${hex.s}`);
+    // console.log("Regular hex with " + `q: ${hex.q}, r: ${hex.r}, s: ${hex.s}`);
     const adjacentHexes = this.getAdjacentHexes(hex);
     this.setState(prevState => {
       this.deleteHex(hex, prevState.regularHexCoords);
@@ -94,7 +94,7 @@ class Body extends React.Component {
   }
 
   handleAddableClick(hex) {
-    console.log("Addable hex with " + `q: ${hex.q}, r: ${hex.r}, s: ${hex.s}`);
+    // console.log("Addable hex with " + `q: ${hex.q}, r: ${hex.r}, s: ${hex.s}`);
     const adjacentHexes = this.getAdjacentHexes(hex);
     this.setState(prevState => {
       this.swapHexToTarget(hex, prevState.addableHexCoords, prevState.regularHexCoords);
