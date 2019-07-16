@@ -10,6 +10,4 @@
  - Resize image
  - Move image
 #### Hexes Features
- - Resize hexes
  - Choose color (toggle after selection) 
- - Toggle coordinate display 
