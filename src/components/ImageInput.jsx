@@ -6,7 +6,8 @@ function ImageInput(props) {
   return (
     <Input
       type="file"
-      onChange={(event) => props.handleImageChange(event)} />
+      name="backgroundURL"
+      onChange={(event) => props.handleChange(event)} />
   );
 }
 

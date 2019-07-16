@@ -8,7 +8,7 @@ function ImageConfig(props) {
     <Form>
       <h2>Images</h2>
       <Form.Field>
-        <ImageInput handleImageChange={props.handleImageChange} />
+        <ImageInput handleChange={props.handleChange} />
       </Form.Field>
       <Form.Field>
         <label>Adjust size</label>

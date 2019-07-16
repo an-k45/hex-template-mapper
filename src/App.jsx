@@ -17,16 +17,16 @@ class App extends React.Component {
   }
 
   handleChange(event) {
-    const {name, value, type, checked} = event.target;
-    // console.log("name: " + name + ", value" + value);
-    type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
-  }
-
-  // TODO: Refactor into handleChange.
-  handleImageChange(event) {
     event.preventDefault();
-    const imageURL = URL.createObjectURL(event.target.files[0]);
-    this.setState({ backgroundURL: imageURL });
+    const {name, value, type, checked, files} = event.target;
+    // console.log("name: " + name + ", value" + value);
+    if (type === "checkbox") {
+      this.setState({ [name]: checked })
+    } else if (type === "file") {
+      this.setState({ [name]: URL.createObjectURL(files[0]) });
+    } else {
+      this.setState({ [name]: value })
+    }
   }
 
   render() {
@@ -42,7 +42,7 @@ class App extends React.Component {
     return (
       <Grid celled style={gridStyles}>
         <Grid.Column style={configColumnStyles} width={4}>
-          <ConfigPanel data={this.state} handleChange={this.handleChange} handleImageChange={this.handleImageChange} />
+          <ConfigPanel data={this.state} handleChange={this.handleChange} />
         </Grid.Column>
         <Grid.Column style={bodyColumnStyles} width={12}>
           <Body data={this.state} />
