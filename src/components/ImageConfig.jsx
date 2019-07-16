@@ -1,13 +1,14 @@
 import React from 'react';
 import { Input, Form, Button } from 'semantic-ui-react';
 
-function ImageConfig() {
+import ImageInput from './ImageInput';
+
+function ImageConfig(props) {
   return (
     <Form>
       <h2>Images</h2>
       <Form.Field>
-        <label>Upload image</label>
-        <Button icon='upload' />
+        <ImageInput handleImageChange={props.handleImageChange} />
       </Form.Field>
       <Form.Field>
         <label>Adjust size</label>
