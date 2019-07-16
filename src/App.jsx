@@ -13,7 +13,6 @@ class App extends React.Component {
       backgroundURL: ''
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleImageChange = this.handleImageChange.bind(this);
   }
 
   handleChange(event) {
