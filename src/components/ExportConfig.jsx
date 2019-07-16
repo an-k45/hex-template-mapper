@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Button } from 'semantic-ui-react';
 
-function ImageConfig() {
+function ExportConfig(props) {
   return (
     <Form>
       <h2>Export</h2>
@@ -12,4 +12,4 @@ function ImageConfig() {
   );
 }
 
-export default ImageConfig;
+export default ExportConfig;
