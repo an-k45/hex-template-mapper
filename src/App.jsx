@@ -12,7 +12,9 @@ class App extends React.Component {
       showCoords: false,
       backgroundURL: '',
       backgroundX: '50%',
-      backgroundY: '50%'
+      backgroundY: '50%',
+      backgroundAutoAlignX: true,
+      backgroundSize: '100%'
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -20,11 +22,9 @@ class App extends React.Component {
   handleChange(event) {
     event.preventDefault();
     let {name, value, type, checked, files} = event.target;
-    // console.log("name: " + name + ", value: " + value);
-    if (name === "backgroundX" || name === "backgroundY") {
-      value = `${value}%`
-    }
-    
+    // console.log("name: " + name + ", value: " + value + ", checked: " + checked);
+    if (["backgroundX", "backgroundY", "backgroundSize"].includes(name)) value = `${value}%`;
+
     if (type === "checkbox") {
       this.setState({ [name]: checked });
     } else if (type === "file") {
@@ -40,7 +40,7 @@ class App extends React.Component {
       backgroundImage: `url(${this.state.backgroundURL})`,
       backgroundPosition: `${this.state.backgroundX} ${this.state.backgroundY}`,
       backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
+      backgroundSize: this.state.backgroundAutoAlignX ? `auto ${this.state.backgroundSize}` : `${this.state.backgroundSize} auto`,
       padding: 0
     };
     // Adapted from https://stackoverflow.com/questions/48717904/how-to-make-a-semantic-ui-react-grid-full-screen-with-different-row-heights

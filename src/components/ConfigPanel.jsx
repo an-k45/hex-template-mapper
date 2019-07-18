@@ -11,7 +11,7 @@ function ConfigPanel(props) {
     <Container textAlign='center'>
       <HexConfig data={props.data} handleChange={props.handleChange} />
       <Divider />
-      <ImageConfig handleChange={props.handleChange} />
+      <ImageConfig data={props.data} handleChange={props.handleChange} />
       <Divider />
       <ExportConfig />
     </Container>

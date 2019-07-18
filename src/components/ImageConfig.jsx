@@ -11,8 +11,12 @@ function ImageConfig(props) {
         <ImageInput handleChange={props.handleChange} />
       </Form.Field>
       <Form.Field>
+        <label>Auto align (x)</label>
+        <Input type="checkbox" name="backgroundAutoAlignX" checked={props.data.backgroundAutoAlignX} onChange={props.handleChange} />
+      </Form.Field>
+      <Form.Field>
         <label>Adjust size</label>
-        <Input fluid type="range" />
+        <Input fluid type="range" name="backgroundSize" onChange={(event) => props.handleChange(event)} />
       </Form.Field>
       <Form.Field>
         <label>Position (x)</label>
