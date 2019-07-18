@@ -50,10 +50,14 @@ function ImageConfig(props) {
         />
       </Form.Field>
       <Form.Field>
+        {/* TODO Prevent this from rotating child (hexes) */}
         <label>Rotate (angle)</label>
         <Input
           fluid
+          name="backgroundAngle"
           type="range"
+          value={props.data.backgroundAngle}
+          onChange={(event) => props.handleChange(event)}
         />
       </Form.Field>
     </Form>

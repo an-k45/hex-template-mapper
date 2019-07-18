@@ -41,6 +41,7 @@ class App extends React.Component {
       backgroundPosition: `${this.state.backgroundX} ${this.state.backgroundY}`,
       backgroundRepeat: "no-repeat",
       backgroundSize: this.state.backgroundAutoAlignX ? `auto ${this.state.backgroundSize}` : `${this.state.backgroundSize} auto`,
+      transform: `rotate(${this.state.backgroundAngle}deg)`,
       padding: 0
     };
     // Adapted from https://stackoverflow.com/questions/48717904/how-to-make-a-semantic-ui-react-grid-full-screen-with-different-row-heights
