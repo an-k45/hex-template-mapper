@@ -6,7 +6,10 @@
   "author": "Aniket K",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server index.jsx"
+    "start": "webpack-dev-server index.jsx --mode development",
+    "dev": "webpack index.jsx --mode development",
+    "build": "webpack index.jsx --mode production",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
@@ -15,6 +18,8 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
+    "gh-pages": "^2.0.1",
+    "html-webpack-plugin": "^3.2.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5",
