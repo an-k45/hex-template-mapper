@@ -1,6 +1,8 @@
 import React from 'react';
 import { Hex, HexGrid, Layout, Hexagon, GridGenerator, Text, HexUtils } from 'react-hexgrid';
 
+import PrintCoordinates from './PrintCoordinates';
+
 class Body extends React.Component {
   constructor(props) {
     super(props);
@@ -123,30 +125,33 @@ class Body extends React.Component {
     const addableHexArray = this.getHexArray(this.state.addableHexCoords);
     const { hexSize, showCoords } = this.props.data;
     return (
-      <div style={{textAlign: 'center'}}>
-        <HexGrid width={'100%'} height={'100%'}>
-          <Layout size={{ x: hexSize, y: hexSize }}>
-            { regularHexArray.map((hex, i) => {
-              return (
-                <Hexagon
-                  key={i}
-                  className={"regular"}
-                  q={hex.q} r={hex.r} s={hex.s}
-                  onClick={() => this.handleRegularClick(hex)}
-                >
-                  {showCoords ? <Text>{HexUtils.getID(hex)}</Text> : null}
-                </Hexagon>
-              );
-            }) }
-            { addableHexArray.map((hex, i) => <Hexagon
-                                                key={i}
-                                                className={"addable"}
-                                                q={hex.q} r={hex.r} s={hex.s}
-                                                onClick={() => this.handleAddableClick(hex)}
-                                              />) }
-          </Layout>
-        </HexGrid>
-      </div>
+      <React.Fragment>
+        <PrintCoordinates curCoords={this.state.regularHexCoords} />
+        <div style={{textAlign: 'center'}}>
+          <HexGrid width={'100%'} height={'100%'}>
+            <Layout size={{ x: hexSize, y: hexSize }}>
+              { regularHexArray.map((hex, i) => {
+                return (
+                  <Hexagon
+                    key={i}
+                    className={"regular"}
+                    q={hex.q} r={hex.r} s={hex.s}
+                    onClick={() => this.handleRegularClick(hex)}
+                    >
+                    {showCoords ? <Text>{HexUtils.getID(hex)}</Text> : null}
+                  </Hexagon>
+                );
+              }) }
+              { addableHexArray.map((hex, i) => <Hexagon
+                key={i}
+                className={"addable"}
+                q={hex.q} r={hex.r} s={hex.s}
+                onClick={() => this.handleAddableClick(hex)}
+                />) }
+              </Layout>
+            </HexGrid>
+          </div>
+      </React.Fragment>
     );
   }
 }
